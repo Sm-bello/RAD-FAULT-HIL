@@ -1,0 +1,22 @@
+cff-version: 1.2.0
+title: "RAD-FAULT-HIL: Open COTS-to-Orbit Space Radiation Transport, Single-Event Effect (SEE/SEU/SEL) Cross-Section & Automated Avionics Fault-Injection Qualification Testbed"
+message: "If you use RAD-FAULT-HIL in your space avionics radiation qualification or fault-tolerant computing research, please cite it using the metadata below."
+type: software
+version: 1.0.0
+date-released: "2026-11-05"
+license: Apache-2.0
+authors:
+  - name: "DIMASA (Digital Intelligence Maintenance for Aircraft Systems in Africa)"
+  - name: "Physics Hybrid Integrity Lab"
+keywords:
+  - space-radiation
+  - single-event-effects
+  - SEU
+  - SEL
+  - weibull-cross-section
+  - bendel-proton-model
+  - south-atlantic-anomaly
+  - triple-modular-redundancy
+  - hamming-sec-ded
+  - hardware-in-the-loop
+  - ccsds

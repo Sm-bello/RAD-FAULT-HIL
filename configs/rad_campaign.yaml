@@ -1,0 +1,26 @@
+# Declarative Campaign Configuration for RAD-FAULT-HIL
+campaign:
+  name: "COTS-to-Orbit LEO SAA + SPE Avionics Qualification Campaign"
+  seed: 20261105
+  orbit_regime: "LEO"
+  duration_s: 5400.0
+  dt_s: 10.0
+  accelerated_beam_scale: 180.0
+
+shielding:
+  aluminum_mm: 2.5
+  tantalum_mm: 0.6
+
+avionics_target:
+  component_id: "STM32H7"
+  memory_words: 256
+  scrub_period_s: 1.0
+  hil_transport_mode: "LOOPBACK"
+
+sel_protection_breaker:
+  bus_voltage_v: 3.3
+  nominal_current_a: 0.35
+  trip_threshold_a: 1.20
+  comparator_delay_us: 1.40
+  fet_turnoff_tau_us: 0.35
+  damage_threshold_uj: 250.0

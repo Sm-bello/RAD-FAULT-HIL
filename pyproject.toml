@@ -1,0 +1,29 @@
+[build-system]
+requires = ["setuptools>=65.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "rad-fault-hil"
+version = "1.0.0"
+description = "Open COTS-to-Orbit Space Radiation Transport, Single-Event Effect (SEE/SEU/SEL) Cross-Section & Automated Avionics Fault-Injection Qualification Testbed"
+readme = "README.md"
+license = { text = "Apache-2.0" }
+requires-python = ">=3.10"
+authors = [
+  { name = "DIMASA (Digital Intelligence Maintenance for Aircraft Systems in Africa) & Physics Hybrid Integrity Lab" }
+]
+dependencies = [
+  "numpy>=1.24",
+  "scipy>=1.10",
+  "pyyaml>=6.0",
+  "pyserial>=3.5",
+]
+
+[project.optional-dependencies]
+dev = [
+  "pytest>=7.4",
+]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"

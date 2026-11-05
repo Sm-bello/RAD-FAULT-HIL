@@ -1,0 +1,189 @@
+{
+  "project": "RAD-FAULT-HIL",
+  "trl_level": "TRL 4 Validated Breadboard & HIL Fault-Injection Testbed",
+  "all_pillars_passed": true,
+  "sha256_digest": "f4916661abe915894d786a30a999070a36cb5a4121fc9d79b086548883d6e426",
+  "seed": 20261105,
+  "orbit_regime": "LEO",
+  "shielding": {
+    "aluminum_mm": 2.5,
+    "tantalum_mm": 0.6,
+    "areal_density_g_cm2": 1.674,
+    "al_equivalent_mm": 5.9891
+  },
+  "radiation_transport_metrics": {
+    "peak_saa_multiplier": 58.0,
+    "shielded_tid_krad_si": 0.001362,
+    "unshielded_tid_krad_si": 0.010161,
+    "saa_transit_steps": 96,
+    "spe_transit_steps": 119
+  },
+  "campaign_fault_injection_summary": {
+    "target_component_id": "STM32H7",
+    "total_injected_events": 296,
+    "seu_corrected_by_secded": 285,
+    "mbu_detected_by_secded": 9,
+    "tmr_voter_resync_events": 178,
+    "sel_breaker_trips": 1,
+    "final_protected_pointing_error_deg": 0.00654,
+    "final_unprotected_pointing_error_deg": 311.769,
+    "final_protected_corrupted_words": 0,
+    "final_unprotected_corrupted_words": 175,
+    "sel_protected_energy_uj": 17.311,
+    "sel_unprotected_energy_uj": 547.379,
+    "sel_damage_threshold_uj": 250.0,
+    "sel_thermal_survival_margin": 14.441
+  },
+  "mtbue_analysis": {
+    "mttf_unprotected_hours": 0.002,
+    "mtbue_secded_unscrubbed_hours": 0.035,
+    "mtbue_secded_scrubbed_hours": 2.876,
+    "scrubbing_improvement_factor": 81.191
+  },
+  "cots_component_library_rates": {
+    "STM32H7": {
+      "part_number": "STM32H743ZIT6 (ARM Cortex-M7)",
+      "expected_seu_per_day": 26.06991,
+      "expected_mbu_per_day": 0.511915,
+      "expected_sefi_per_day": 0.097423,
+      "expected_sel_per_day": 0.022987,
+      "tid_margin_ratio": 2.76
+    },
+    "POLARFIRE_SOC": {
+      "part_number": "MPFS250T (RISC-V PolarFire SoC)",
+      "expected_seu_per_day": 7.77146,
+      "expected_mbu_per_day": 0.071803,
+      "expected_sefi_per_day": 0.009292,
+      "expected_sel_per_day": 0.000332,
+      "tid_margin_ratio": 8.17
+    },
+    "ZYNQ_ULTRASCALE": {
+      "part_number": "XCZU9EG (Xilinx Zynq UltraScale+ MPSoC)",
+      "expected_seu_per_day": 432.20127,
+      "expected_mbu_per_day": 17.247775,
+      "expected_sefi_per_day": 4.460264,
+      "expected_sel_per_day": 1.425778,
+      "tid_margin_ratio": 5.03
+    },
+    "MICRON_DDR4": {
+      "part_number": "MT40A1G8 (Micron 8Gb DDR4 SDRAM)",
+      "expected_seu_per_day": 165.7387,
+      "expected_mbu_per_day": 6.216629,
+      "expected_sefi_per_day": 1.407251,
+      "expected_sel_per_day": 0.389316,
+      "tid_margin_ratio": 3.77
+    },
+    "SIC_MOSFET": {
+      "part_number": "C3M0065090D (Wolfspeed 900V SiC MOSFET)",
+      "expected_seu_per_day": 0.00436,
+      "expected_mbu_per_day": 0.000182,
+      "expected_sefi_per_day": 0.001379,
+      "expected_sel_per_day": 0.028622,
+      "tid_margin_ratio": 18.85
+    }
+  },
+  "pillars": [
+    {
+      "pillar_id": "P1_WEIBULL_BENDEL_TRANSPORT",
+      "title": "Weibull/Bendel Rate Integration & Graded Al+Ta Shielding Physics",
+      "passed": true,
+      "measured_value": 58.0,
+      "threshold_description": "SAA proton spike >= 50x & Al+Ta TID attenuation > 2.5x",
+      "unit": "x (SAA flux spike)",
+      "details": {
+        "peak_saa_multiplier": 58.0,
+        "tid_attenuation_factor": 7.462,
+        "shielded_tid_krad_si": 0.001362,
+        "unshielded_tid_krad_si": 0.010161,
+        "weibull_below_threshold_cm2": 0.0,
+        "weibull_asymptotic_ratio": 1.0
+      }
+    },
+    {
+      "pillar_id": "P2_SECDED_SCRUBBING_MTBUE",
+      "title": "Extended Hamming SEC-DED (72,64) & Active Scrubbing MTBUE",
+      "passed": true,
+      "measured_value": 81.2,
+      "threshold_description": "100% 1-bit correction, 100% 2-bit detection, MTBUE gain > 50x",
+      "unit": "x (MTBUE gain)",
+      "details": {
+        "all_72_single_bit_corrected": true,
+        "adjacent_double_bit_detected": true,
+        "mttf_unprotected_hours": 0.002,
+        "mtbue_secded_unscrubbed_hours": 0.035,
+        "mtbue_secded_scrubbed_hours": 2.876,
+        "scrubbing_improvement_factor": 81.191,
+        "final_protected_corrupted_words": 0,
+        "final_unprotected_corrupted_words": 175
+      }
+    },
+    {
+      "pillar_id": "P3_TMR_VOTER_SAA_RECOVERY",
+      "title": "TMR GNC Voter & Single-Frame State Resynchronization under SAA Storm",
+      "passed": true,
+      "measured_value": 0.0065,
+      "threshold_description": "Final protected pointing error < 0.25 deg (Unprotected > 35 deg)",
+      "unit": "deg",
+      "details": {
+        "final_protected_pointing_err_deg": 0.00654,
+        "max_protected_pointing_err_deg": 0.30542,
+        "max_unprotected_pointing_err_deg": 311.769,
+        "tmr_resync_events": 178
+      }
+    },
+    {
+      "pillar_id": "P4_SEL_THERMAL_PROTECTION",
+      "title": "Fast High-Side SEL Current-Limiting Breaker Thermal Survival Margin",
+      "passed": true,
+      "measured_value": 14.44,
+      "threshold_description": "Cutoff < 5 us & E_damage / E_thermal > 5.0x safety margin",
+      "unit": "x (thermal margin)",
+      "details": {
+        "trip_detection_time_us": 0.2,
+        "cutoff_complete_time_us": 2.65,
+        "protected_energy_uj": 17.311,
+        "unprotected_energy_uj": 547.379,
+        "damage_threshold_uj": 250.0,
+        "unprotected_burned_out": true
+      }
+    },
+    {
+      "pillar_id": "P5_CCSDS_HIL_PROTOCOL_INTEGRITY",
+      "title": "CCSDS / JTAG-UART Binary HIL Bridge & CRC-16-CCITT Frame Integrity",
+      "passed": true,
+      "measured_value": 100.0,
+      "threshold_description": "100% valid TC/TM delivery + 100% CRC-16 corruption rejection + UDP socket",
+      "unit": "%",
+      "details": {
+        "campaign_valid_frames": 296,
+        "crc_corrupted_frames_rejected": 1,
+        "udp_renode_socket_verified": true
+      }
+    },
+    {
+      "pillar_id": "P6_CRYPTOGRAPHIC_REPRODUCIBILITY",
+      "title": "Deterministic Campaign Replay & Cryptographic SHA-256 Audit Identity",
+      "passed": true,
+      "measured_value": 1.0,
+      "threshold_description": "Bit-exact SHA-256 match across independent campaign runs",
+      "unit": "match",
+      "details": {
+        "run1_sha256": "f4916661abe915894d786a30a999070a36cb5a4121fc9d79b086548883d6e426",
+        "run2_sha256": "f4916661abe915894d786a30a999070a36cb5a4121fc9d79b086548883d6e426"
+      }
+    },
+    {
+      "pillar_id": "P7_REALTIME_FRAME_BUDGET",
+      "title": "Real-Time Avionics TMR Voter + SEC-DED Scrubber Minor-Frame Budget",
+      "passed": true,
+      "measured_value": 26.73,
+      "threshold_description": "99th-percentile step execution latency < 100.0 ms (10 Hz minor frame)",
+      "unit": "ms",
+      "details": {
+        "mean_step_exec_ms": 12.1826,
+        "p99_step_exec_ms": 26.7303,
+        "frame_budget_ms": 100.0
+      }
+    }
+  ]
+}
